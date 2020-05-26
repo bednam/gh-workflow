@@ -15,6 +15,8 @@ jobs:
        echo ::set-env name=USER_SECRET::${{ secrets.STORAGE_SECRET }}
        echo ::set-env name=OWNER::$(echo "${GITHUB_REPOSITORY/\/*/}")
        echo ::set-env name=REPO::$(echo "${GITHUB_REPOSITORY/*\//}")
+    - name: Checkout repository
+      uses: actions/checkout@v2
     - name: Create storage if not present # if storage existed before then repo-existed output will be set to 'true'
       id: create-storage
       uses: ./storage-gh-actions
